@@ -1,38 +1,51 @@
-
-
-
-
+#include <ext/pb_ds/assoc_container.hpp> // Common file
+#include <ext/pb_ds/tree_policy.hpp>
+#include <functional> // for less
+#include <iostream>
 #include<bits/stdc++.h>
-using namespace std;
 #define endl '\n'
-#define ll long long int
+#define ll unsigned long long int
 #define pb push_back
+using namespace __gnu_pbds;
+using namespace std;
 
-
+typedef tree<long long int, null_type, less_equal<long long int>, rb_tree_tag,
+        tree_order_statistics_node_update>
+        ordered_multiset;
+ordered_multiset s;
+ordered_multiset :: iterator it;
+vector<ll>v;
+bool cheak(ll n,ll a)
+{
+    return(n&(1<<a));
+}
+ll bset(ll n,ll i)
+{
+    return(n|(1<<i));
+}
 int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    ll a,b,x,t,d,c;
+    ll t,x,a,b,c,cont=0,i;
     cin>>t;
     while(t--)
     {
-        cin>>a>>b;
-        c=min(a,b);
-        d=max(a,b);
-        if(a==b)
-            cout<<a<<endl;
-        else if(c==1)
+        cin>>x;
+        a=0;
+        b=x;
+        cont=0;
+        while(x!=0)
         {
-          cout<<(d*2)-1<<endl;
+            x/=2;
+            cont++;
         }
-        else{
+        c=bset(b,cont);
+        cout<<a<<" "<<b<<" "<<c<<endl;
 
-
-        x=a*b-a-b;
-        cout<<x<<endl;
-        }
     }
-    return 0;
+
+
+  return 0;
 }
